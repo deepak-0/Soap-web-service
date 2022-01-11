@@ -22,4 +22,16 @@ public class EmployeeService {
             throw new EmployeeNotFoundException("Employee with id " + employeeId + " does not exist.");
 
     }
+    public Employee addEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    public Employee updateEmployee(Employee employee){
+            return employeeRepository.save(employee);
+    }
+
+    public Employee deleteEmployee(int empId){
+            employeeRepository.deleteById(empId);
+            return null;
+    }
 }

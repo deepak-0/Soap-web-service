@@ -1,0 +1,11 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="https://www.torryharris.com/soap-ws-demo">
+    <soapenv:Header/>
+
+    <soapenv:Body>
+        <gs:addEmployeeRequest>
+            <gs:employeeId>111</gs:employeeId>
+        </gs:addEmployeeRequest>
+    </soapenv:Body>
+
+</soapenv:Envelope>

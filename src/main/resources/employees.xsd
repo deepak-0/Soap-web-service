@@ -26,5 +26,30 @@
 			<xs:element name="salary" type="xs:double" />
 		</xs:sequence>
 	</xs:complexType>
+	<xs:element name="addEmployeeRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="employeeId" type="xs:int" />
+				<xs:element name="firstName" type="xs:string" />
+				<xs:element name="salary" type="xs:double" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="updateEmployeeRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="employeeId" type="xs:int" />
+				<xs:element name="firstName" type="xs:string" />
+				<xs:element name="salary" type="xs:double" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="deleteEmployeeRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="employeeId" type="xs:int" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 
 </xs:schema>
