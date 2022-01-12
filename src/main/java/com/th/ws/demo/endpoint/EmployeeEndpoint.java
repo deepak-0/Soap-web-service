@@ -12,6 +12,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import java.util.List;
+
 
 @Endpoint
 public class EmployeeEndpoint {
@@ -35,6 +37,26 @@ public class EmployeeEndpoint {
         GetEmployeeResponse response = new GetEmployeeResponse();
 
         Employee emp = employeeService.getEmployeeById(request.getEmployeeId());
+
+        EmployeeType empt = new EmployeeType();
+
+        empt.setEmployeeId(emp.getEmployeeId());
+        empt.setFirstName(emp.getFirstName());
+        empt.setSalary(emp.getSalary());
+        BeanUtils.copyProperties(emp, empt);
+        response.setEmployeeType(empt);
+        LOG.info(emp.toString());
+
+        return response;
+    }
+    //getBySalary
+    @PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "getBySalaryRequest")
+    @ResponsePayload
+    public GetEmployeeResponse getBySalary(@RequestPayload GetBySalaryRequest request) {
+        LOG.info("getBySalary " + request.getSalary());
+        GetEmployeeResponse response = new GetEmployeeResponse();
+
+        Employee emp = employeeService.getEmployeeBySalary(request.getSalary());
 
         EmployeeType empt = new EmployeeType();
 
@@ -88,4 +110,21 @@ public class EmployeeEndpoint {
         response.setEmployeeType(empt);
         return response;
     }
+
+    // getAllEmployees
+    @PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "getAllEmployeeRequest")
+    @ResponsePayload
+    public GetAllEmployeesResponse getAllEmployees() {
+        LOG.info("getAllEmployees");
+        List<Employee> empList = employeeService.getAllEmployees();
+        GetAllEmployeesResponse response = new GetAllEmployeesResponse();
+        EmployeeType empt = new EmployeeType();
+        for (Employee emp : empList) {
+            BeanUtils.copyProperties(emp, empt);
+            response.getEmployeesType().add(empt);
+        }
+        return response;
+    }
+
+
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +23,12 @@ public class EmployeeService {
             throw new EmployeeNotFoundException("Employee with id " + employeeId + " does not exist.");
 
     }
+
+    public Employee getEmployeeBySalary(int salary){
+            Optional<Employee> empSalary= employeeRepository.findBySalary(salary);
+            return empSalary.get();
+    }
+
     public Employee addEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
@@ -33,5 +40,8 @@ public class EmployeeService {
     public Employee deleteEmployee(int empId){
             employeeRepository.deleteById(empId);
             return null;
+    }
+    public List<Employee> getAllEmployees(){
+           return employeeRepository.findAll();
     }
 }

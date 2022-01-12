@@ -7,6 +7,14 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="employeeId" type="xs:int" />
+
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getBySalaryRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="salary" type="xs:int" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -51,5 +59,16 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="getAllEmployeesRequest">
+		<xs:complexType />
+	</xs:element>
 
+	<xs:element name="getAllEmployeesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="employeesType" type="tns:employeeType"
+							maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>
